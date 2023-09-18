@@ -18,7 +18,7 @@ The next two programs are from following the ideas at the end of the tutorial.
   the original filename.
 * [find_nearby_faces.py](./find_nearby_faces.py) takes a reference face image
   file, finds the face in, calculates its embedding, and looks for the N
-  nearest faces storedi in the PostgreSQL database (where N defaults to 5).
+  nearest faces stored in the PostgreSQL database (where N defaults to 5).
   
 To run the programs, follow the start of the tutorial in order to set up a
 virtual environment (Python requirements are in
