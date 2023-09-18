@@ -1,0 +1,5 @@
+venv/
+src/*.JPG
+src/*.png
+haarcascade_frontalface_default.xml
+*.rst.build_temp
