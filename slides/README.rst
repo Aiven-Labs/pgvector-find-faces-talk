@@ -185,13 +185,13 @@ My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
 
 .. _`original tutorial`: https://aiven.io/developer/find-faces-with-pgvector
 
---------
+License
+~~~~~~~
 
-  |cc-attr-sharealike|
+|cc-attr-sharealike|
 
-  This talk and its related files are released under a `Creative Commons
-  Attribution-ShareAlike 4.0 International License`_. The source code for the
-  demo programs is dual-licensed as CC Attribution Share Alike and MIT.
+This talk and its related files are released under a `Creative Commons
+Attribution-ShareAlike 4.0 International License`_. 
 
 .. |cc-attr-sharealike| image:: images/cc-attribution-sharealike-88x31.png
    :alt: CC-Attribution-ShareAlike image
