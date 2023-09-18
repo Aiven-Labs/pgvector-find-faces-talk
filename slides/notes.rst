@@ -1235,6 +1235,10 @@ My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
 References for future reading
 -----------------------------
 
+This set of interesting references is not in any way complete, so do your own research!
+
+.. REMEMBER TO UPDATE IN README.rst AS WELL
+
 * `Colorful vectors`_ by JP Hwang (`@_jphwang`), an Educator at Weaviate_,
   which illustrates vector search in RGB space with interactive images
 * `Vector Embeddings for Developers: The Basics`_ at Pinecone_ is a nice
