@@ -117,13 +117,6 @@ It's not in any way complete, so do your own research!
   covers a lot more of the ideas of *embedding*, *similarity* and
   *clustering*.
 
-  And quoting that article:
-
-    The process of representing something in a computer is called embedding.
-
-  So a "vector embedding" is a vector that represents something, or a
-  representation of something as an array of numbers.
-
 * In general, `What are embeddings`_ by `Vicki Boykis`_ looks like a very
   useful resource, and the `Next`_ section of that site seems to have lots of
   very interesting references - I especially like `The Illustrated Word2vec`_
