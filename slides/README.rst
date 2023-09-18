@@ -50,6 +50,9 @@ readable as plain text.
 
 The sources for the notes are in `<notes.rst>`_.
 
+If you want, you can make a PDF of the notes with `make notes` - but if you're
+just reading here, `<notes.rst>`_ is easier.
+
 Note that github will present the ``.rst`` files in rendered form as HTML,
 albeit using their own styling (which is occasionally a bit odd). If you want
 to see the original reStructuredText source, you have to click on the "Raw"
