@@ -164,6 +164,8 @@ Postgres, PostgreSQL and the Slonik Logo are trademarks or registered
 trademarks of the PostgreSQL Community Association of Canada, and used with
 their permission
 
+Images:
+
 * `ML Typewriter`_ image from https://unsplash.com/, by `Markus Winkler`_
 
 * Penknife_ and Hammer_ images from https://pixabay.com/, by `OpenClipart-Vectors`_
