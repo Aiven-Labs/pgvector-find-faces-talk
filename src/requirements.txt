@@ -1,0 +1,4 @@
+opencv-python
+imgbeddings
+psycopg2-binary
+click
