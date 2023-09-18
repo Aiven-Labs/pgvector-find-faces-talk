@@ -29,7 +29,7 @@ cascade XML file, again as described in the tutorial.
 ## License
 
 The code is licensed under the Apache license, version 2.0, for compatibility
-with the [tutorial source code repository](https://github.com/Aiven-Labs/pgvector-image-recognition/). The full license text is available in the [LICENSE][./LICENSE] file.
+with the [tutorial source code repository](https://github.com/Aiven-Labs/pgvector-image-recognition/). The full license text is available in the [LICENSE](./LICENSE) file.
 
 Please note that the project explicitly does not require a CLA (Contributor License Agreement) from its contributors.
 
