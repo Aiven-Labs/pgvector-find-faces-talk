@@ -1296,7 +1296,7 @@ is an excellent talk about the ethics around AI regardless of why you're using i
 Fin
 ---
 
-Get a free trial of Aiven services at https://go.aiven.io/tibs-signup
+Get a free trial of Aiven services at https://go.aiven.io/pyconuk-signup
 
 Also, we're hiring! See https://aiven.io/careers
 

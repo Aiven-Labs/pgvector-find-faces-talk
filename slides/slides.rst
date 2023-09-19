@@ -854,7 +854,7 @@ My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
 Fin
 ---
 
-Get a free trial of Aiven services at https://go.aiven.io/tibs-signup
+Get a free trial of Aiven services at https://go.aiven.io/pyconuk-signup
 
 Also, we're hiring! See https://aiven.io/careers
 
