@@ -483,8 +483,10 @@ Wednesday at Crab Week
 There were 779 photos, and 5006 faces.
 
 Going through them manually, I found 25 that had my face visible,
-but some were in a crowd or obscured, three were of my back (!) and two were
-with a false moustache
+
+ * some were in a crowd or obscured,
+ * three were of my back (!)
+ * two were with a false moustache
 
 Results the program found
 -------------------------
@@ -521,8 +523,9 @@ Thursday at Crab Week
 
 There were 574 photos and 3486 faces.
 
-Going through them manually, I found 7 that had my face visible, although in 4
-of them I had dark glasses
+Going through them manually, I found 7 that had my face visible
+
+* although in 4 of them I had dark glasses
 
 Results the program found
 -------------------------
