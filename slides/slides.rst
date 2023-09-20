@@ -480,7 +480,7 @@ But how good is it?
 Wednesday at Crab Week
 ----------------------
 
-There were 781 photos, and 5006 faces.
+There were 779 photos, and 5006 faces.
 
 Going through them manually, I found 25 that had my face visible,
 but some were in a crowd or obscured, three were of my back (!) and two were
