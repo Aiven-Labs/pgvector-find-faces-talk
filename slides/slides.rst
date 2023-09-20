@@ -566,8 +566,7 @@ I learnt a lot.
 
 I got not awful (!) results with really very low effort.
 
-I know what to do for the next set of investigations, and the data I collect
-will be persistent, too.
+I know what to do for the next set of investigations
 
 What I'd do next
 ----------------
