@@ -147,14 +147,16 @@ Find which files contain my face, using SQL like the following:
       ORDER BY embedding <-> [0.38162553310394287, ..., 0.20030969381332397]
       LIMIT 10;
 
-1. Finding faces and store their embeddings
--------------------------------------------
+Stage 1. Find faces and store their embeddings
+----------------------------------------------
 
 .. image:: images/faces-to-pg.png
            :width: 100%
 
-But it's not perfect!
----------------------
+It's not perfect!
+-----------------
+
+May not find all the faces
 
 When analysing a group photo, it also found these two faces:
 
@@ -179,8 +181,8 @@ Each embedding is an array of 768 floating point numbers.
   ``0.38162553310394287, ..., 0.20030969381332397``
 
 
-2. Looking for photos with my face in them
-------------------------------------------
+Stage 2. Look for photos with my face in them
+---------------------------------------------
 
 .. image:: images/find-nearby-faces.png
            :width: 100%
@@ -236,6 +238,12 @@ Create our database table
 
 ``embedding`` is the vector itself
 
+Program 1. Find faces and store their embeddings
+------------------------------------------------
+
+.. image:: images/faces-to-pg.png
+           :width: 100%
+
 Find faces and store their embeddings
 -------------------------------------
 
@@ -249,14 +257,6 @@ Find faces and store their embeddings
     -p, --pg-uri TEXT  the URI for the PostgreSQL service, defaulting to
                         $PG_SERVICE_URI if that is set
     --help             Show this message and exit.
-
-Find faces and store their embeddings
--------------------------------------
-
-Reminder:
-
-.. image:: images/faces-to-pg.png
-           :width: 100%
 
 Find faces and store their embeddings (1)
 -----------------------------------------
@@ -362,6 +362,12 @@ Find faces and store their embeddings (7)
             embedding = EXCLUDED.embedding;
 
 
+Program 2. Find "nearby" faces
+------------------------------
+
+.. image:: images/find-nearby-faces.png
+           :width: 100%
+
 Find "nearby" faces
 -------------------
 
@@ -376,14 +382,6 @@ Find "nearby" faces
     -p, --pg-uri TEXT             the URI for the PostgreSQL service, defaulting
                                     to $PG_SERVICE_URI if that is set
     --help                        Show this message and exit.
-
-Find "nearby" faces
--------------------
-
-Reminder:
-
-.. image:: images/find-nearby-faces.png
-           :width: 100%
 
 Find "nearby" faces (1)
 -----------------------
@@ -472,10 +470,11 @@ Find "nearby" faces (5)
 But how good is it?
 -------------------
 
-Well, the search is quick, which is satisfying.
+779 files, 5006 faces
 
-    Something like 3 seconds to compare the embeddings for 5000 faces from
-    750+ photos
+* 21 minutes to calculate and store the embeddings
+
+* 3 seconds to find the 10 nearest faces
 
 
 Wednesday at Crab Week
@@ -596,12 +595,9 @@ Part the fourth: Why PostgreSQL?
 Why is PostgreSQL a surprising choice?
 --------------------------------------
 
-Python is a good fit for data pipelines like this, as it has good bindings to
-machine learning packages, and excellent support for talking to PostgreSQL.
+We expect Python to be a good fit for exploring ML
 
-So why is PostgreSQL a surprising choice?
-
-Because people assume you need a specialised DB to store embeddings.
+But PostgreSQL isn't a dedicated vector database
 
 So why PostgreSQL?
 ------------------
@@ -627,23 +623,12 @@ So why PostgreSQL?
 Images from https://pixabay.com/, by `OpenClipart-Vectors`_
 
 
-
-So why PostgreSQL?
-------------------
-
-With caveats, because:
-
-* It's significantly better than nothing
-* We already have it
-* It can SQL all the things
-* Indexing
-
 It's significantly better than nothing
 --------------------------------------
 
 (faint praise indeed)
 
-There comes a point when you need to store your embeddings in some sort of database, just to keep experimenting
+There comes a point when you need to store your embeddings in some sort of database
 
 PostgreSQL is a *good* place to start
 
@@ -657,10 +642,12 @@ It can SQL all the things
 
 This can be *really useful*:
 
-* Find me things like this order, that are in stock
-* Find the pictures of me that were taken in Portugal, between these dates
-* Find all the things that match <these qualities> and choose the one most
-  like <this other thing>
+    Find me things like <this order>, that are in stock
+
+    Find the pictures of me taken in Portugal, between <these dates>
+
+    Find things that match <these qualities>, and choose the one most
+    like <this other thing>
 
 
 PostgreSQL optimisation techniques work
@@ -686,36 +673,21 @@ HNSW was just added in `pgvector 0.5.0`_
 A recurring pattern
 -------------------
 
-We should recognised this pattern:
+We should recognise this pattern:
 
-  Work in PostgreSQL until it's not suitable for some reason, and *then* move to
+  Work in PostgreSQL until it's not suitable,
+
+  and *then* move to
   something else
-
-
-As pgvector itself says
------------------------
-
-    Store your vectors with the rest of your data. Supports:
-
-    * exact and approximate nearest neighbor search
-    * L2 distance, inner product, and cosine distance
-    * any language with a Postgres client
-
-    Plus ACID compliance, point-in-time recovery, JOINs, and all of the other great features of Postgres
-
-.. from the `pgvector GitHub page`_
-
 
 
 
 When not to use PG?
 -------------------
 
-* when vectors are too big
-* when there are *way* too many vectors
-* when you need a distance function that isn't provided
-* when you need more speed (prototype first)
-* when the queries aren't SQL any more - for instance opensearch has some ML support
+When it can't cope
+
+When it doesn't actually do what you want
 
 When vectors are too big
 ------------------------
@@ -747,11 +719,6 @@ According to the `pgvector FAQ`_
   A non-partitioned table has a limit of 32 TB by default in Postgres. A
   partitioned table can have thousands of partitions of that size.
 
-When you need a missing distance function
------------------------------------------
-
-Although this can change...
-
 When you need more speed
 ------------------------
 
@@ -759,6 +726,11 @@ pgvector is ultimately limited by being based on a relational database that is
 not, itself, optimised for this task.
 
 Remember to profile!
+
+When you need a missing distance function
+-----------------------------------------
+
+Although this can change...
 
 When the queries aren't SQL
 ---------------------------
@@ -775,8 +747,7 @@ Is pgvector the only PostgreSQL solution?
 
 Neon_ provides pg_embedding_, which uses an HNSW index
 
-There's `an article by them`_ comparing its performance with the pgvector 0.5.0
-HNSW support.
+There's `an article by them`_ comparing its performance with pgvector HNSW
 
 .. _Neon: https://neon.tech/
 .. _pg_embedding: https://github.com/neondatabase/pg_embedding

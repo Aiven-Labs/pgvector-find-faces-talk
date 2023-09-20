@@ -689,9 +689,15 @@ Well, the search is quick, which is satisfying.
 Wednesday at Crab Week
 ----------------------
 
-There were 781 photos.
+779 files, 5006 faces
 
-Going through them manually, I found 25 that had my face visible,
+* 21 minutes to calculate and store the embeddings
+
+* 3 seconds to find the 10 nearest faces
+
+Which I think is perfectly acceptable for demo software.
+
+Going through the files manually, I found 25 that had my face visible,
 but some were in a crowd or obscured, three were of my back (!) and two were
 with a false moustache
 
@@ -1072,7 +1078,7 @@ So different index types optimise for different things:
 A recurring pattern
 -------------------
 
-As Python programmers, we should recognised this pattern:
+As Python programmers, we should recognise this pattern:
 
   Work in PostgreSQL until it's not suitable for some reason, and *then* move to
   something else
@@ -1099,11 +1105,9 @@ On the `pgvector GitHub page`_:
 When not to use PG?
 -------------------
 
-* when vectors are too big
-* when there are *way* too many vectors
-* when you need a distance function that isn't provided
-* when you need more speed (prototype first)
-* when the queries aren't SQL any more - for instance opensearch has some ML support
+When it can't cope
+
+When it doesn't actually do what you want
 
 When vectors are too big
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1136,11 +1140,6 @@ According to the `pgvector FAQ`_
   A non-partitioned table has a limit of 32 TB by default in Postgres. A
   partitioned table can have thousands of partitions of that size.
 
-When you need a missing distance function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Although this can change as new capabilities are added.
-
 When you need more speed
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1148,6 +1147,11 @@ pgvector is ultimately limited by being based on a relational database that is
 not, itself, optimised for this task.
 
 But always remember to profile!
+
+When you need a missing distance function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Although this can change as new capabilities are added.
 
 When the queries aren't SQL
 ---------------------------
