@@ -26,12 +26,15 @@ readable as plain text.
 
 The sources for the slides are in `<slides.rst>`_.
 
+The sources for the slides *as given at PyCon UK* are in `<slides-at-pyconuk.rst>`_.
+
 Note that github will present the ``.rst`` files in rendered form as HTML,
 albeit using their own styling (which is occasionally a bit odd). If you want
 to see the original reStructuredText source, you have to click on the "Raw"
 link at the top of the file's page.
 
-The PDF slides at 16x9 aspect ratio (`<slides-16x9.pdf>`_) are stored here
+The PDF slides at 16x9 aspect ratio (`<slides-16x9.pdf>`_ and
+`<slides-at-pyconuk.pdf>`_ respectively) are stored here
 for convenience.
 
 The PDF files may not always be as up-to-date as the source files, so check
