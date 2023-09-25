@@ -33,6 +33,10 @@ slides: make16x9
 make16x9:
 	$(RST2PDF) -s light16x9.yaml slides.rst -o slides-16x9.pdf
 
+.PHONY: slides-at-pyconuk
+slides-at-pyconuk:
+	$(RST2PDF) -s light16x9.yaml slides-at-pyconuk.rst -o slides-at-pyconuk.pdf
+
 .PHONY: 16x9
 16x9:   make16x9
 	open slides-16x9.pdf

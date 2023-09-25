@@ -46,9 +46,8 @@ def find_faces(gray_image, haar_cascade):
 
 
 def calc_reference_embedding(face_file, haar_cascade, ibed):
-    orig_image = cv2.imread(face_file, 0)
-    gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
-    faces = find_faces(gray_image, haar_cascade)
+    orig_image = cv2.imread(face_file, cv2.IMREAD_GRAYSCALE)
+    faces = find_faces(orig_image, haar_cascade)
 
     if len(faces) == 0:
         raise GiveUp(f"Didn't find any faces in {face_file}")

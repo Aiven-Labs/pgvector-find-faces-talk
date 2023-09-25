@@ -89,13 +89,12 @@ def main(image_files: tuple[str], pg_uri: str):
         # get terminated, so let's try with short connections
         with psycopg2.connect(pg_uri) as conn:
             try:
-                print(f'Processing {picture_file}')
+                print(f'Processing {image_file}')
 
-                orig_image = cv2.imread(picture_file, 0)
-                gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
-                faces = find_faces(gray_image, haar_cascade)
+                orig_image = cv2.imread(image_file, cv2.IMREAD_GRAYSCALE)
+                faces = find_faces(orig_image, haar_cascade)
 
-                write_faces_to_pg(faces, orig_image, picture_file, conn, ibed)
+                write_faces_to_pg(faces, orig_image, image_file, conn, ibed)
             except Exception as e:
                 print(f'Error {e.__class__.__name__} {e}')
                 break

@@ -51,11 +51,10 @@ def write_faces(faces, orig_image, picture_file):
 def main(picture_file: str):
     haar_cascade = load_algorithm()
 
-    # Read the image in, and convert it to greyscale
-    orig_image = cv2.imread(picture_file, 0)
-    gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
+    # Read the image in, as greyscale
+    orig_image = cv2.imread(picture_file, cv2.IMREAD_GRAYSCALE)
 
-    faces = find_faces(gray_image, haar_cascade)
+    faces = find_faces(orig_image, haar_cascade)
     write_faces(faces, orig_image, picture_file)
 
 

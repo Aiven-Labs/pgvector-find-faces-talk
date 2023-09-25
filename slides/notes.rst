@@ -442,9 +442,8 @@ Find faces and store their embeddings (1)
 
         for image_file in image_files:
             with psycopg2.connect(pg_uri) as conn:
-                orig_image = cv2.imread(picture_file, 0)
-                gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
-                faces = find_faces(gray_image, haar_cascade)
+                orig_image = cv2.imread(picture_file, cv2.IMREAD_GRAYSCALE)
+                faces = find_faces(orig_image, haar_cascade)
 
                 write_faces_to_pg(faces, orig_image, picture_file, conn, ibed)
 
@@ -468,9 +467,28 @@ Find faces and store their embeddings (3)
 
 .. code:: python
 
-        # Read the image in, and convert it to greyscale
-        orig_image = cv2.imread(picture_file, 0)
-        gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
+        # Read the image as greyscale
+        orig_image = cv2.imread(image_file, cv2.IMREAD_GRAYSCALE)
+
+**Note** in the original code as described in the slides at PyCon UK, this
+code looked like:
+
+.. code:: python
+
+                orig_image = cv2.imread(image_file, 0)
+                gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
+
+and there was a comment about converting to greyscale. This was wrong
+(although it was consistently wrong, so the program did work!) in two ways:
+
+1. ``cv2.COLOR_RGB2BGR`` not converting to greyscale (!) but from RGB to BGR
+   colur order, and
+2. that ``0`` parameter to the ``cv2.imread`` call is the same as the
+   ``cv2.IMREAD_GRAYSCALE`` constant - so we're actually reading the file in
+   as greyscale.
+
+I've kept the original slides as-is (look for ``slides-at-pyconuk``) but
+correcting the ``slides.rst`` version.
 
 Find faces and store their embeddings (4)
 -----------------------------------------
@@ -612,8 +630,7 @@ Find "nearby" faces (2)
 .. code:: python
 
     def calc_reference_embedding(face_file, haar_cascade, ibed):
-        orig_image = cv2.imread(face_file, 0)
-        gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
+        orig_image = cv2.imread(image_file, cv2.IMREAD_GRAYSCALE)
         faces = find_faces(gray_image, haar_cascade)
 
         # We hope there's only one face!
