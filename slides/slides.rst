@@ -269,9 +269,8 @@ Find faces and store their embeddings (1)
 
         for image_file in image_files:
             with psycopg2.connect(pg_uri) as conn:
-                orig_image = cv2.imread(picture_file, 0)
-                gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
-                faces = find_faces(gray_image, haar_cascade)
+                orig_image = cv2.imread(image_file, cv2.IMREAD_GRAYSCALE)
+                faces = find_faces(orig_image, haar_cascade)
 
                 write_faces_to_pg(faces, orig_image, picture_file, conn, ibed)
 
@@ -295,9 +294,8 @@ Find faces and store their embeddings (3)
 
 .. code:: python
 
-        # Read the image in, and convert it to greyscale
-        orig_image = cv2.imread(picture_file, 0)
-        gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
+        # Read the image in, as greyscale
+        orig_image = cv2.imread(image_file, cv2.IMREAD_GRAYSCALE)
 
 Find faces and store their embeddings (4)
 -----------------------------------------
@@ -407,9 +405,8 @@ Find "nearby" faces (2)
 .. code:: python
 
     def calc_reference_embedding(face_file, haar_cascade, ibed):
-        orig_image = cv2.imread(face_file, 0)
-        gray_image = cv2.cvtColor(orig_image, cv2.COLOR_RGB2BGR)
-        faces = find_faces(gray_image, haar_cascade)
+        orig_image = cv2.imread(picture_file, cv2.IMREAD_GRAYSCALE)
+        faces = find_faces(orig_image, haar_cascade)
 
         # We hope there's only one face!
         cropped_images = []
