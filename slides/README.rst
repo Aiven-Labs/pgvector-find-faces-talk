@@ -3,14 +3,14 @@ Slides for "How I used PostgreSQL® to find pictures of me at a party"
 =====================================================================
 
 These are the slides for the talk "How I used PostgreSQL® to find pictures of me
-at a party", (to be) given by Tibs_ at
+at a party", given by Tibs_ at
 `PyCon UK 2023`_.
 
 .. _`PyCon UK 2023`: https://2023.pyconuk.org/
 .. _Tibs: https://aiven.io/Tibs
+.. _`on youtube`: https://www.youtube.com/watch?v=_FqKxKVJGWQ
 
-A link to the video recording will be provided when that is available.
-
+The video is available `on YouTube`_.
 
 The source code
 ~~~~~~~~~~~~~~~
