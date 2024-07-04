@@ -30,20 +30,22 @@ Part the first: Introduction and vague background
 
 I'm Tibs_, and I'm a Developer Educator at Aiven_:
 
-  Aiven: The trusted open source data platform for everyone
+  Aiven: Your trusted data and AI platform
+
+  (One unified platform to stream, store, and serve data on any cloud)
 
 .. _Aiven: https://aiven.io/
 .. _Tibs: https://aiven.io/tibs
 
-Recently, our engineering colleagues enabled the ``pgvector`` plugin for
+Last year, our engineering colleagues enabled the ``pgvector`` plugin for
 PostgreSQL\ :sup:`®` on our platform, and my other colleagues started playing
-with it. In particular, Francesco Tisiot wrote a tutorial on how to use it.
+with it. In particular, `Francesco Tisiot`_ wrote a tutorial on how to use it.
 
 
-I'm an AI skeptic
-~~~~~~~~~~~~~~~~~
+I'm a recovering AI skeptic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-I lived through the last `AI boom`_ in the 1980s, and the subsequent `AI winter`_ of the 1990s
+I lived through the `AI boom`_ in the 1980s, and the subsequent `AI winter`_ of the 1990s
 
 But we did get expert systems, knowledge based systems, etc. - they just dropped the name "AI"
 
@@ -51,21 +53,22 @@ But we did get expert systems, knowledge based systems, etc. - they just dropped
 .. _`AI winter`: https://en.wikipedia.org/wiki/AI_winter
 
 
-My colleagues have been convincing me
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+My colleagues had been convincing me
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Interesting used of ChatGPT and friends:
 
 * Quick prototypes of boring code
 * Rewrite this paragraph a different way
 
-But I think the tutorial by my colleague Francesco Tisiot actually sparked my
-interest to look at this all a bit more:
+But what first really caught my interest was this use case, finding my face,
+which is based on a tutorial by `Francesco Tisiot`_. And yes, he used my face
+in the tutorial :)
 
-* And now, finding my face
+Since then, I've found other compelling use cases, including:
 
-Also, recently, a demo I saw on multi-modal comparisons - comparing text, audio,
-image and video.
+* Search and RAG patterns (Retrieval Augmented Generation)
+* Multi-modal comparisons - comparing text, audio, image and video.
 
 The talk title says "how I used", but it should probably be "how I'm learning
 to use" - this is still very much something I'm learning about, and this talk
@@ -99,15 +102,16 @@ Part the second: not an explanation of ML
 Vector embeddings
 -----------------
 
-ML people talk about vectors and embeddings and vector embeddings.
+Machine Learning people talk about vectors and embeddings and vector embeddings.
+
+A vector is an array of numbers representing a direction and a size (or distance).
 
 "Embedding" means representing something in a computer.
 
 So a "vector embedding" is
 
-* a vector that represents something,
+* an array of numbers representing a direction and size
 * stored in a computer.
-
 
 
 Not an introduction to vectors and embeddings
@@ -144,7 +148,7 @@ that can change) and also a length (the length of the arrow).
 
 For instance, we could represent ``(5, 8, 3)`` as follows (``origin`` is ``(0, 0, 0)``)
 
-    **A 3d graph showing a vector**
+    **A 3d graph showing a vector (5, 8, 3)**
 
     .. image:: images/3d-vector.png
         :width: 50%
@@ -197,6 +201,9 @@ So once we've got vectors, we can compare them.
 
     This is wonderful - and sometimes leads to surprising results
 
+If you're interested in earlier versions of text analysis, look for NLP
+(Natural Language Processing).
+
 
 **Categorising** things to get those arrays is possible to do by hand for
 relatively simple cases (people have done this in text analysis, for
@@ -234,35 +241,6 @@ Since many of the photographs would contain other people
 
 (and I'd need their consent to show them)
 
-Based on a tutorial
--------------------
-
-See
-
-* https://aiven.io/developer/find-faces-with-pgvector
-* https://github.com/Aiven-Labs/pgvector-image-recognition
-
-`find_faces.py`_ is my version of the initial piece of code, from
-`Retrieve the faces from the photos`_, and with my own
-adjustments to the ``haar_cascade.detectMultiScale`` settings.
-
-`calc_embeddings.py`_ is my version of the second piece of code, from
-`Calculate the embeddings`_.
-
-`find_faces_store_embeddings.py`_ and `find_nearby_faces.py`_ are then the
-convenience scripts I wrote to manage the final part of the tutorial, actually
-scanning a directory of images to find the faces therein (the first script)
-and to find (for instance) my face (the second script).
-
-.. _`find_faces.py`: ../src/find_faces.py
-.. _`calc_embeddings.py`: ../src/calc_embeddings.py
-.. _`Retrieve the faces from the photos`:
-   https://aiven.io/developer/find-faces-with-pgvector#retrieve-the-faces-from-photos
-.. _`Calculate the embeddings`:
-   https://aiven.io/developer/find-faces-with-pgvector#calculate-the-embeddings
-.. _`find_faces_store_embeddings.py`: ../src/find_faces_store_embeddings.py
-.. _`find_nearby_faces.py`: ../src/find_nearby_faces.py
-
 Our aim
 -------
 
@@ -273,6 +251,41 @@ Find which files contain my face, using SQL like the following:
     SELECT filename FROM pictures
       ORDER BY embedding <-> [0.38162553310394287, ..., 0.20030969381332397]
       LIMIT 10;
+
+Based on a tutorial
+-------------------
+
+See
+
+* The original tutorial, `Image recognition with Python, OpenCV, OpenAI CLIP
+  and pgvector`_
+* The GitHub repository with `a Jupyter notebook`_ showing working code for that tutorial: https://github.com/Aiven-Labs/pgvector-image-recognition
+
+.. _`Image recognition with Python, OpenCV, OpenAI CLIP and pgvector`: https://aiven.io/developer/find-faces-with-pgvector
+.. _`a Jupyter notebook`: https://github.com/Aiven-Labs/pgvector-image-recognition/blob/main/main.ipynb
+
+In *this* repository:
+
+* `find_faces.py`_ is my version of the initial piece of code, from `Retrieve
+  the faces from the photos`_, and with my own adjustments to the
+  ``haar_cascade.detectMultiScale`` settings.
+
+* `calc_embeddings.py`_ is my version of the second piece of code, from
+  `Calculate the embeddings`_.
+
+* `find_faces_store_embeddings.py`_ and `find_nearby_faces.py`_ are then the
+  convenience scripts I wrote to manage the final part of the tutorial,
+  actually scanning a directory of images to find the faces therein (the first
+  script) and to find (for instance) my face (the second script).
+
+.. _`find_faces.py`: ../src/find_faces.py
+.. _`calc_embeddings.py`: ../src/calc_embeddings.py
+.. _`Retrieve the faces from the photos`:
+   https://aiven.io/developer/find-faces-with-pgvector#retrieve-the-faces-from-photos
+.. _`Calculate the embeddings`:
+   https://aiven.io/developer/find-faces-with-pgvector#calculate-the-embeddings
+.. _`find_faces_store_embeddings.py`: ../src/find_faces_store_embeddings.py
+.. _`find_nearby_faces.py`: ../src/find_nearby_faces.py
 
 1. Finding faces and store their embeddings
 -------------------------------------------
@@ -312,7 +325,8 @@ The embedding is an array of 768 floating point numbers.
   ``0.38162553310394287, ..., 0.20030969381332397``
 
 We *could* print that array out, or save it to a text file, and then copy if
-when we want to do something with it. But we have a database, so let's use it.
+when we want to do something with it. But we have a database, so let's use it
+(in fact, this is already our first good reason for reaching for PostgreSQL).
 
    ** Note** Why 768? Some searching gave me `this answer on stackoverflow`_,
    which says:
@@ -338,8 +352,8 @@ and then finds the most "similar" faces in the PostgreSQL database.
 The example here is using my slack image as the reference face (note: those
 numbers are not from its actual embedding!)
 
-Set up the environment
-----------------------
+The program requirements
+------------------------
 
 We're going to be using
 
@@ -353,8 +367,9 @@ We also need to download the ::
 file from the `OpenCV GitHub repository`_ - this is the pre-trained Haar
 Cascade model that we will use to recognise faces.
 
- **Note** The article `Face Detection with Haar Cascade`_ describes how a Haar
- Cascade model recognises faces.
+ **Note** Haar Cascade is designed to detect objects in images, regardless of
+ their scale and location in those images. The article `Face Detection with
+ Haar Cascade`_ describes how a Haar Cascade model recognises faces.
 
 .. _`Face Detection with Haar Cascade`: https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
 
@@ -366,6 +381,28 @@ My example programs also use click_ and `psycopg2-binary`_
 .. _click: https://click.palletsprojects.com/
 .. _`psycopg2-binary`: https://pypi.org/project/psycopg2-binary/
 .. _`OpenCV GitHub repository`: https://github.com/opencv/opencv/tree/master/data/haarcascades
+
+Start a PostgreSQL service
+--------------------------
+
+For convenience, I use an Aiven for PostgreSQL\ :sup:`®` service. You can
+create one within a few minutes using the `Aiven Console`_.
+
+If you're new to Aiven, you can either use a free PostgreSQL or start a trial.
+Either way, a Hobbyist plan should be sufficient for these examples.
+
+.. _`Aiven Console`: https://console.aiven.io/
+
+I like to use psql to communicate with the PostgreSQL service, but there are
+other good choices. See the **Quick connect** button on the Aiven Console
+service Overview page for suggestions as to what command lines to use to
+connect to the database.
+
+For convenience running the programs, I set the environment variable
+``PG_SERVICE_URI`` to the value given for the Service URI on the service
+Overview page. All of the programs will use this environment varaiable if it's
+set.
+
 
 Enable pgvector
 ---------------
@@ -393,7 +430,7 @@ Create our database table
 
 .. code:: sql
 
-   CREATE TABLE pictures (face text PRIMARY KEY, filename text, embedding vector(768));
+   CREATE TABLE pictures (face_key text PRIMARY KEY, filename text, embedding vector(768));
 
 
 * ``face`` is the string we use to identify this particular face:
@@ -482,13 +519,13 @@ and there was a comment about converting to greyscale. This was wrong
 (although it was consistently wrong, so the program did work!) in two ways:
 
 1. ``cv2.COLOR_RGB2BGR`` not converting to greyscale (!) but from RGB to BGR
-   colur order, and
+   colour order, and
 2. that ``0`` parameter to the ``cv2.imread`` call is the same as the
    ``cv2.IMREAD_GRAYSCALE`` constant - so we're actually reading the file in
    as greyscale.
 
-I've kept the original slides as-is (look for ``slides-at-pyconuk``) but
-correcting the ``slides.rst`` version.
+I've kept the original slides as-is (look for ``slides-at-pyconuk``), since
+that's the version given there, but corrected the ``slides.rst`` version.
 
 Find faces and store their embeddings (4)
 -----------------------------------------
@@ -569,6 +606,32 @@ The ``ON CONFLICT`` clause allows us to overwrite a record if it already
 exists - this is useful when I might want to run the same script in testing
 more than once, without wanting to ``DELETE FROM pictures;`` each time, to
 delete the table content.
+
+Running it
+----------
+
+::
+
+  $ ./find_faces_store_embeddings.py ~/data/crab-week-2023-wednesday/*
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+  Loading imgbeddings
+  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:671: FutureWarning: 'cached_download' is the legacy way to download files from the HF hub, please consider upgrading to 'hf_hub_download'
+    warnings.warn(
+  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/transformers/models/clip/processing_clip.py:149: FutureWarning: `feature_extractor` is deprecated and will be removed in v5. Use `image_processor` instead.
+    warnings.warn(
+  Processing /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2597.jpg
+  Found 5 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2597.jpg
+  Processing /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2598.jpg
+  Found 5 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2598.jpg
+  ...
+  Found 8 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN3654.jpg
+  Processing /Users/tony.ibbs/data/crab-week-2023-wednesday/Copy of AIVEN2685.jpg
+  Found 3 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/Copy of AIVEN2685.jpg
+  Found 5006 "faces" in 779 files
+
+which took 11m26s.
+
 
 
 Find "nearby" faces
@@ -695,6 +758,53 @@ Find "nearby" faces (5)
 This is why I stored the original filename in the database table - so I could
 use it in the report at the end.
 
+Find "nearby" faces (6)
+-----------------------
+
+That SQL operator:
+
+.. code:: sql
+
+    SELECT filename FROM pictures
+      ORDER BY embedding <-> [0.38162553310394287, ..., 0.20030969381332397]
+      LIMIT 10;
+
+* `<->` finds the nearest results by L2 (euclidean) distance.
+* `<=>` uses cosine similarity - it compares the angle/direction
+* `<#>` computes the inner product - do the vectors point the same way
+* `<+>` computes the L1 ("Manhattan" or "taxi cab") distance (new in 0.7.0)
+
+See the pgvector `Querying`_ documentation for the current list of operators.
+
+.. _`Querying`: https://github.com/pgvector/pgvector?tab=readme-ov-file#querying
+
+Running it
+----------
+
+::
+
+  ; ./find_nearby_faces.py slack-picture.jpg -n 10
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+  Loading imgbeddings
+  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:671: FutureWarning: 'cached_download' is the legacy way to download files from the HF hub, please consider upgrading to 'hf_hub_download'
+    warnings.warn(
+  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/transformers/models/clip/processing_clip.py:149: FutureWarning: `feature_extractor` is deprecated and will be removed in v5. Use `image_processor` instead.
+    warnings.warn(
+  Number of results: 10
+    0: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2752.jpg
+    1: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2839.jpg
+    2: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2838.jpg
+    3: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2806.jpg
+    4: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2808.jpg
+    5: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2750.jpg
+    6: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2751.jpg
+    7: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2748.jpg
+    8: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2681.jpg
+    9: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN3104.jpg
+
+which took 3s
+
 
 But how good is it?
 -------------------
@@ -708,7 +818,7 @@ Wednesday at Crab Week
 
 779 files, 5006 faces
 
-* 21 minutes to calculate and store the embeddings
+* Between 11 and 21 minutes to calculate and store the embeddings
 
 * 3 seconds to find the 10 nearest faces
 
@@ -1046,16 +1156,14 @@ and can do ANALYZE on the query, too
 Indexing
 --------
 
-Indexing speeds up the *use* of embeddings.
+Indexing speeds up the *use* of embeddings, at the cost of approximate answers.
 
-There are currently two types of index available in pgvector:
+That means you'll probably get different answers than without an index.
+
+pgvector supports two types of index:
 
 * IVFFlat - exact nearest neighbours, slower
 * HNSW - approximate nearest neighbours, faster
-
-HNSW was just added in `pgvector 0.5.0`_
-
-.. _`pgvector 0.5.0`: https://jkatz05.com/post/postgres/pgvector-overview-0.5.0/
 
 Quoting https://github.com/pgvector/pgvector#indexing:
 
@@ -1066,41 +1174,100 @@ Quoting https://github.com/pgvector/pgvector#indexing:
     trades some recall for speed. Unlike typical indexes, you will see
     different results for queries after adding an approximate index.
 
-Since 0.5.0, pgvector supports two types of index:
+In both case, you'll need a separate index for each distance function
 
-   * IVFFlat (Inverted File with Flat Compression)
+https://github.com/pgvector/pgvector#hnsw
+https://github.com/pgvector/pgvector#ivfflat
 
-     Quoting https://github.com/pgvector/pgvector#ivfflat:
+IVFFlat (Inverted File with Flat Compression)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-     "An IVFFlat index divides vectors into lists, and then searches a subset
-     of those lists that are closest to the query vector. It has faster build
-     times and uses less memory than HNSW, but has lower query performance (in
-     terms of speed-recall tradeoff)."
+.. image:: images/IVFFLAT.jpeg
+     :width: 80%
 
-   * HSNW (Hierarchical Navigable Small Worlds)
+Quoting https://github.com/pgvector/pgvector#ivfflat:
 
-     Quoting https://github.com/pgvector/pgvector#hnsw:
+  "An IVFFlat index divides vectors into lists, and then searches a subset
+  of those lists that are closest to the query vector. It has faster build
+  times and uses less memory than HNSW, but has lower query performance (in
+  terms of speed-recall tradeoff)."
 
-     "An HNSW index creates a multilayer graph. It has slower build times and
-     uses more memory than IVFFlat, but has better query performance (in terms
-     of speed-recall tradeoff). There’s no training step like IVFFlat, so the
-     index can be created without any data in the table."
+* Finds centroids in the data
+* Creates clusters (lists) of lists around those centroids
+* Only search one or more nearby clusters, where "nearby" is judged by the
+  distance to the centroid
 
-So different index types optimise for different things:
+Benefits:
 
-* ease of creating the index
-* speed of searching in particular ways
-* accuracy of search
+* Easy to understand
+* Faster to build and uses less memory than HNSW
 
-A recurring pattern
--------------------
+Snags:
+
+* Worse query performance than HNSW (worse speed-recall tradeoff)
+* Need to create index after data exists, to allow calculating centroids
+* As data is added, the centroids stay the same, which may not reflect the new
+  data distribution, so may need to recalculate index periodically
+* Can "miss" if the result wanted is at the near edge of the next cluster over
+* Need to decide the number of clusters (lists) and the number of clusters
+  examined (probed) during a search
+
+HSNW (Hierarchical Navigable Small Worlds)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Quoting https://github.com/pgvector/pgvector#hnsw:
+
+  "An HNSW index creates a multilayer graph. It has slower build times and
+  uses more memory than IVFFlat, but has better query performance (in terms
+  of speed-recall tradeoff). There’s no training step like IVFFlat, so the
+  index can be created without any data in the table."
+
+.. image:: images/HNSW.jpeg
+     :width: 50%
+
+* Create a graph with multiple "zoom levels" (or skip lists)
+* The outermost level only has a few vectors in it. Find the nearest there.
+* The next level has more vectors - so follow down to the just-found vector in
+  that level and search around it
+* And repeat
+
+Benefits:
+
+* Better query performance than IVFFlat (better speed-recall tradeoff)
+* Index can be created before there's any data
+* Adapts as vectors are added
+
+Snags:
+
+* Slower build time than HNSW, and uses more memory
+* Need to decide the maximum number of items per layer, and maximum "memory"
+  of closest candidates used when constructing the graph
+
+
+So which to choose?
+~~~~~~~~~~~~~~~~~~~
+
+Advice from `Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`_
+
+  * If you care more about index size, then choose IVFFlat.
+  * If you care more about index build time, then select IVFFlat.
+  * If you care more about speed, then choose HNSW.
+  * If you expect vectors to be added or modified, then select HNSW.
+
+.. _`Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`: https://github.com/pgvector/pgvector#ivfflat:
+
+So why PostgreSQL? - A recurring pattern
+----------------------------------------
 
 As Python programmers, we should recognise this pattern:
 
-  Work in PostgreSQL until it's not suitable for some reason, and *then* move to
-  something else
+  * Work in Python until it's not suitable for some reason, and *then* move to
+    something else
 
-It's like doing an initial implementation in Python, and then re-implementing
+  * Work in PostgreSQL until it's not suitable for some reason, and *then* move to
+    something else
+
+That is, it's like doing an initial implementation in Python, and then re-implementing
 in another programming language if necessary.
 
 As pgvector itself says
@@ -1129,13 +1296,25 @@ When it doesn't actually do what you want
 When vectors are too big
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `pgvector Reference`_ section says:
+According to the `pgvector Reference`_ section:
 
-  Each vector takes ``4 * dimensions + 8`` bytes of storage. Each element is a
-  single precision floating-point number (like the ``real`` type in Postgres),
-  and all elements must be finite (no ``NaN``, ``Infinity`` or ``-Infinity``).
+* Vector type, each vector takes ``4 * dimensions + 8`` bytes of storage. Each
+  element is a single precision floating-point number (like the ``real`` type
+  in Postgres), and all elements must be finite (no ``NaN``, ``Infinity`` or
+  ``-Infinity``).
+
+* Halfvec type takes ``2 * dimensions + 8`` bytes, and elements are half-precision
+  floating point.
+
+* Bit type takes ``dimensions / 8 + 8`` bytes
+
+* Sparsevec takes ``8 * non-zero elements + 1`` bytes.
+
+In general:
 
   Vectors can have up to 16,000 dimensions.
+
+although for Sparsevec (new in 0.7.0), that's "up to 16,000 non-zero elements"
 
 .. _`pgvector Reference`: https://github.com/pgvector/pgvector#reference
 
@@ -1147,10 +1326,16 @@ According to the `pgvector FAQ`_
 
   You can't currently **index** a vector if it has more than 2,000 dimensions
 
+but there are techniques to work around this:
+
+  You can use half-precision indexing to index up to 4,000 dimensions or
+  binary quantization to index up to 64,000 dimensions. Another option is
+  dimensionality reduction.
+
 .. _`pgvector FAQ`: https://github.com/pgvector/pgvector#frequently-asked-questions
 
-When there are too many vectors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When there are too many vectors for a table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 According to the `pgvector FAQ`_
 
@@ -1170,13 +1355,20 @@ When you need a missing distance function
 
 Although this can change as new capabilities are added.
 
+...for instance, the addition of ``<+>`` (L1 distance) in 0.7.0
+
 When the queries aren't SQL
 ---------------------------
 
 Relational databases and SQL aren't always the best solution.
 
-For instance, OpenSearch also has vector support.
+For instance, the following (all also supported by Aiven) also support vector search:
 
+* OpenSearch - document store with powerful indexing and search
+* ClickHouse - columnnar database (actually does support SQL)
+* Dragonfly - key/value store (Redis protocol)
+
+And there are currently lots of (dedicated) vector databases out there.
 
 Other tools
 -----------
@@ -1193,41 +1385,29 @@ HNSW support.
 .. _`an article by them`: https://neon.tech/blog/pgvector-meets-hnsw-index
 
 
-A quick and not very rigorous search gives a variety of open source solutions:
-
-* Weaviate https://weaviate.io/
-* Milvus https://milvus.io/
-* Qdrant https://qdrant.tech/
-* Vespa https://vespa.ai/
-* Chroma https://www.trychroma.com/
-
-And some more
-
-* OpenSearch_  has vector database functionality
-* SingleStore vector db https://www.singlestore.com/built-in-vector-database/
-* Relevance AI vector db https://relevanceai.com/vector-db
-* The FAISS library https://faiss.ai/
-
-And see lists like https://byby.dev/vector-databases
-
-.. _OpenSearch: https://opensearch.org/
-
-
-
 The future is bright (judging from history)
 -------------------------------------------
 
 
-`Vectors are the new JSON in PostgreSQL`_ by `Jonathan Katz`_ points out that
-embeddings in PG are at the point JSON support was some years back.
+In June 2023, in the post `Vectors are the new JSON in PostgreSQL`_, `Jonathan
+Katz`_ points out that embeddings in PG are at the point JSON support was some
+years back.
+
+In April 2024, he follows up with `The 150x pgvector speedup: A
+year-in-review`_, analysing the speed of various operations then and now. That
+150% is for one specific thing, but the point of the article is that, as
+expected, things are improving fast.
 
 .. _`Vectors are the new JSON in PostgreSQL`: https://jkatz05.com/post/postgres/vectors-json-postgresql/
+.. _`The 150x pgvector speedup: A year-in-review`: https://jkatz05.com/post/postgres/pgvector-performance-150x-speedup/
 .. _`Jonathan Katz`: https://jkatz05.com/
 
 Things will get better and faster and support larger vectors over the next few years.
 
-(I'm also minded of large blob support - TOAST is always an issue, but they
-work on it)
+(I'm also reminded of large blob support - which led to TOAST_, or
+"The Oversized-Attribute Storage Technique")
+
+.. _TOAST: https://www.postgresql.org/docs/current/storage-toast.html
 
 Acknowledgements
 ----------------
@@ -1249,9 +1429,13 @@ their permission
 .. _`JCC Math.Phys 191: The vector class`: http://jccc-mpg.wikidot.com/the-vector-class
 .. _`CC BY-SA 3.0`: https://creativecommons.org/licenses/by-sa/3.0/
 
-My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
+My colleague `Francesco Tisiot`_ for the `original tutorial`_, and much good advice
+
+My colleague `Olena Kutsenko`_ for the index diagrams.
 
 .. _`original tutorial`: https://aiven.io/developer/find-faces-with-pgvector
+.. _`Francesco Tisiot`: https://aiven.io/francesco
+.. _`Olena Kutsenko`: https://aiven.io/olena
 
 References for future reading
 -----------------------------
@@ -1293,9 +1477,17 @@ This set of interesting references is not in any way complete, so do your own re
 * `Sebi's demo`_ - my colleague Sébastien Blanc tweeting a video showing his
   cool demo of using ``pgvector`` to find nearest colours by RGB.
 
-And the "`AI and ethics`_" talk from `Write the Docs Atlantic`_ when it's
-available - this talk by `Chris Meyns`_ was called "AI ethics for tech writers", but really it
-is an excellent talk about the ethics around AI regardless of why you're using it.
+* I think `Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`_ is a
+  decent introduction to the two types of index in pgvector, and how to decide
+  which you want.
+
+* The talk `AI ethics for tech writers`_ by `Chris Meyns`_ from `Write the
+  Docs Atlantic 2023`_ is an excellent talk about the ethics around AI
+  regardless of why you're using it.
+
+* Glyph`_'s `A Grand Unified Theory of the AI Hype Cycle`_ is a fun
+  look at the shape of the history of this field. By his non-exhaustive list
+  of N, this is my fourth time round the cycle :)
 
 .. _`What are embeddings`: https://vickiboykis.com/what_are_embeddings/
 .. _`Vicki Boykis`: https://vickiboykis.com/about/
@@ -1310,16 +1502,18 @@ is an excellent talk about the ethics around AI regardless of why you're using i
 .. _`Vector Embeddings Explained`: https://weaviate.io/blog/vector-embeddings-explained
 .. _`Face Detection with Haar Cascade`: https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
 .. _`Sebi's demo`: https://twitter.com/sebi2706/status/1698715900231184755
-.. _`Write the Docs Atlantic`: https://www.writethedocs.org/conf/atlantic/2023/
-.. _`AI and ethics`: https://www.writethedocs.org/conf/atlantic/2023/speakers/#speaker-chris-meyns-ai-ethics-for-tech-writers-chris-meyns
+.. _`Write the Docs Atlantic 2023`: https://www.writethedocs.org/conf/atlantic/2023/
+.. _`AI ethics for tech writers`: https://www.youtube.com/watch?v=SDzP6Xs9WoQ
 .. _`Chris Meyns`: https://www.linkedin.com/in/meyns/
+.. _Glyph: https://blog.glyph.im/pages/about.html
+.. _`A Grand Unified Theory of the AI Hype Cycle`: https://blog.glyph.im/2024/05/grand-unified-ai-hype.html
 
 Fin
 ---
 
 Get a free trial of Aiven services at https://go.aiven.io/pyconuk-signup
 
-Also, we're hiring! See https://aiven.io/careers
+.. Also, we're hiring! See https://aiven.io/careers
 
 Written in reStructuredText_, converted to PDF using rst2pdf_
 

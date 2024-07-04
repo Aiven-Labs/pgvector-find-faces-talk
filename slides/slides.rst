@@ -42,24 +42,29 @@ Why PostgreSQL\ :sup:`®`.
 Part the first: Introduction and vague background
 -------------------------------------------------
 
-I'm an AI skeptic
+I'm a recovering AI skeptic
 
-I lived through the last `AI boom`_ in the 1980s, and the subsequent `AI winter`_ of the 1990s
+I lived through the `AI boom`_ in the 1980s, and the subsequent `AI winter`_ of the 1990s
 
 But we did get expert systems, knowledge based systems, etc. - they just dropped the name "AI"
 
 .. _`AI boom`: https://en.wikipedia.org/wiki/History_of_artificial_intelligence#Boom_(1980%E2%80%931987)
 .. _`AI winter`: https://en.wikipedia.org/wiki/AI_winter
 
-My colleagues have been convincing me
--------------------------------------
+My colleagues had been convincing me
+------------------------------------
 
 * Quick prototypes of boring code
 * Rewrite this paragraph a different way
-* And now, finding my face
 
-Also, recently, a demo I saw on multi-modal comparisons - comparing text, audio,
-image and video.
+But what first really caught my interest was this use case, finding my face,
+which is based on a tutorial by `Francesco Tisiot`_
+
+..
+    Since then, I've found other compelling use cases, including:
+
+    * Search and RAG patterns (Retrieval Augmented Generation)
+    * Multi-modal comparisons - comparing text, audio, image and video.
 
 Part the second: not an explanation of ML
 -----------------------------------------
@@ -80,11 +85,13 @@ Not an introduction to vectors and embeddings
 
 ML people talk about vectors and embeddings and vector embeddings.
 
+A vector is an array of numbers representing a direction and a size (or distance).
+
 "Embedding" means representing something in a computer.
 
 So a "vector embedding" is
 
-* a vector that represents something,
+* an array of numbers representing a direction and size
 * stored in a computer.
 
 Not enough about vectors
@@ -94,8 +101,8 @@ Broadly, we can describe the characteristics of things with numbers.
 
 For instance, we can describe colours with RGB values.
 
-A 3d graph showing a vector
----------------------------
+A 3d graph showing a vector (5, 8, 3)
+-------------------------------------
 
 .. figure:: images/3d-vector.png
    :width: 30%
@@ -111,7 +118,10 @@ We can compare their
 * length
 * direction
 
-and we can do maths between vectors - but look elsewhere for that
+and we can do maths between vectors - for instance
+
+* "is the vector between colour 1 and colour 2 *similar to* the vector
+  between colour 3 and colour 4"
 
 Calculating the vectors
 -----------------------
@@ -146,6 +156,12 @@ Find which files contain my face, using SQL like the following:
     SELECT filename FROM pictures
       ORDER BY embedding <-> [0.38162553310394287, ..., 0.20030969381332397]
       LIMIT 10;
+
+Based on a tutorial
+-------------------
+
+* https://aiven.io/developer/find-faces-with-pgvector
+* https://github.com/Aiven-Labs/pgvector-image-recognition
 
 Stage 1. Find faces and store their embeddings
 ----------------------------------------------
@@ -190,8 +206,8 @@ Stage 2. Look for photos with my face in them
 Using my slack image as the reference face
 
 
-Set up the environment
-----------------------
+The program requirements
+------------------------
 
 We're going to be using
 
@@ -199,7 +215,7 @@ We're going to be using
 * imgbeddings_ to calculate embeddings from an image
 * the ``haarcascade_frontalface_default.xml``
   file from the `OpenCV GitHub repository`_, which defines the
-  pre-trained Haar Cascade model
+  pre-trained Haar Cascade model, which we will use to find the faces
 
 My example programs also use click_ and `psycopg2-binary`_
 
@@ -230,9 +246,9 @@ Create our database table
 
 .. code:: sql
 
-   CREATE TABLE pictures (face text PRIMARY KEY, filename text, embedding vector(768));
+   CREATE TABLE pictures (face_key text PRIMARY KEY, filename text, embedding vector(768));
 
-``face`` is the string we use to identify this particular face
+``face_key`` is the string we use to identify this particular face
 
 ``filename`` is the name of the file we found the face in
 
@@ -463,13 +479,28 @@ Find "nearby" faces (5)
             for index, row in enumerate(rows):
                 print(f'  {index}: {row[0]}')
 
+Find "nearby" faces (6)
+-----------------------
+
+That SQL operator:
+
+.. code:: sql
+
+    SELECT filename FROM pictures
+      ORDER BY embedding <-> [0.38162553310394287, ..., 0.20030969381332397]
+      LIMIT 10;
+
+* `<->` finds the nearest results by L2 (euclidean) distance.
+* `<=>` uses cosine similarity - it compares the angle/direction
+* `<#>` computes the inner product - do the vectors point the same way
+* `<+>` computes the L1 ("Manhattan" or "taxi cab") distance
 
 But how good is it?
 -------------------
 
 779 files, 5006 faces
 
-* 21 minutes to calculate and store the embeddings
+* 11 to 21 minutes to calculate and store the embeddings
 
 * 3 seconds to find the 10 nearest faces
 
@@ -664,20 +695,52 @@ Speeds up the *use* of embeddings.
 * IVFFlat - exact nearest neighbours, slower
 * HNSW - approximate nearest neighbours, faster
 
-HNSW was just added in `pgvector 0.5.0`_
+IVFFlat: Inverted File with Flat Compression
+--------------------------------------------
 
-.. _`pgvector 0.5.0`: https://jkatz05.com/post/postgres/pgvector-overview-0.5.0/
+.. raw:: pdf
+
+   Spacer 0 10
+
+.. image:: images/IVFFLAT.jpeg
+   :width: 80%
 
 
-A recurring pattern
--------------------
+HNSW: Hierarchical Navigable Small Worlds
+-----------------------------------------
 
-We should recognise this pattern:
+.. image:: images/HNSW.jpeg
+   :width: 45%
 
-  Work in PostgreSQL until it's not suitable,
+So which to choose?
+~~~~~~~~~~~~~~~~~~~
 
-  and *then* move to
-  something else
+Advice from `Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`_
+
+  * If you care more about index size, then choose IVFFlat.
+  * If you care more about index build time, then select IVFFlat.
+  * If you care more about speed, then choose HNSW.
+  * If you expect vectors to be added or modified, then select HNSW.
+
+.. _`Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`: https://github.com/pgvector/pgvector#ivfflat:
+
+
+So why PostgreSQL? - A recurring pattern
+----------------------------------------
+
+As Python programmers, we should recognise this pattern:
+
+* Work in Python until it's not suitable,
+
+  and *then* move to something else
+
+  .. raw:: pdf
+
+     Spacer 0 10
+
+* Work in PostgreSQL until it's not suitable,
+
+  and *then* move to something else
 
 
 
@@ -693,11 +756,9 @@ When vectors are too big
 
 The `pgvector Reference`_ section says:
 
-  Each vector takes ``4 * dimensions + 8`` bytes of storage. Each element is a
-  single precision floating-point number (like the ``real`` type in Postgres),
-  and all elements must be finite (no ``NaN``, ``Infinity`` or ``-Infinity``).
-
   Vectors can have up to 16,000 dimensions.
+
+although for Sparsevec, that's "up to 16,000 non-zero elements"
 
 .. _`pgvector Reference`: https://github.com/pgvector/pgvector#reference
 
@@ -708,10 +769,12 @@ According to the `pgvector FAQ`_
 
   You can't currently **index** a vector if it has more than 2,000 dimensions
 
+(but there are techniques to work around this)
+
 .. _`pgvector FAQ`: https://github.com/pgvector/pgvector#frequently-asked-questions
 
-When there are too many vectors
--------------------------------
+When there are too many vectors for a table
+-------------------------------------------
 
 According to the `pgvector FAQ`_
 
@@ -731,13 +794,20 @@ When you need a missing distance function
 
 Although this can change...
 
+...for instance, the addition of ``<+>`` (L1 distance) in 0.7.0
+
 When the queries aren't SQL
 ---------------------------
 
 Relational databases and SQL aren't always the best solution.
 
-For instance, OpenSearch also has vector support.
+For instance, the following (also supported by Aiven :) support vector search:
 
+* OpenSearch - document store with powerful indexing and search
+* ClickHouse - columnnar database (actually does support SQL)
+* Dragonfly - key/value store (Redis protocol)
+
+And there are currently lots of (dedicated) vector databases out there.
 
 Other tools
 -----------
@@ -753,30 +823,6 @@ There's `an article by them`_ comparing its performance with pgvector HNSW
 .. _`an article by them`: https://neon.tech/blog/pgvector-meets-hnsw-index
 
 
-A quick and not very rigorous search
-------------------------------------
-
-There are lots of vector databases! Here are some open source solutions:
-
-* Weaviate https://weaviate.io/
-* Milvus https://milvus.io/
-* Qdrant https://qdrant.tech/
-* Vespa https://vespa.ai/
-* Chroma https://www.trychroma.com/
-
-And some more
--------------
-
-* OpenSearch_  has vector database functionality
-* SingleStore vector db https://www.singlestore.com/built-in-vector-database/
-* Relevance AI vector db https://relevanceai.com/vector-db
-* The FAISS library https://faiss.ai/
-
-And see lists like https://byby.dev/vector-databases
-
-.. _OpenSearch: https://opensearch.org/
-
-
 The future is bright (judging from history)
 -------------------------------------------
 
@@ -787,8 +833,9 @@ The future is bright (judging from history)
 
 Things will get better and faster and support larger vectors over the next few years.
 
-(I'm also minded of large blob support - TOAST is always an issue, but they
-work on it)
+(I'm also reminded of large blob support - which led to TOAST_, The Oversized-Attribute Storage Technique)
+
+.. _TOAST: https://www.postgresql.org/docs/current/storage-toast.html
 
 Acknowledgements
 ----------------
@@ -803,17 +850,18 @@ their permission
 
 * Vector graph from `JCC Math.Phys 191: The vector class`_, `CC BY-SA 3.0`_
 
+* My colleagues `Francesco Tisiot`_ for the `original tutorial`_, and `Olena Kutsenko`_ for the index diagrams
+
 .. _Penknife: https://pixabay.com/vectors/swiss-army-knife-pocket-knife-blade-154314/
 .. _Hammer: https://pixabay.com/vectors/hammer-tool-craftsman-nail-159639/
 .. _`OpenClipart-Vectors`: https://pixabay.com/users/openclipart-vectors-30363/
 
 .. _`JCC Math.Phys 191: The vector class`: http://jccc-mpg.wikidot.com/the-vector-class
 .. _`CC BY-SA 3.0`: https://creativecommons.org/licenses/by-sa/3.0/
-
-My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
-
 .. _`original tutorial`: https://aiven.io/developer/find-faces-with-pgvector
 
+.. _`Francesco Tisiot`: https://aiven.io/francesco
+.. _`Olena Kutsenko`: https://aiven.io/olena
 
 .. -----------------------------------------------------------------------------
 
@@ -824,9 +872,9 @@ My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
 Fin
 ---
 
-Get a free trial of Aiven services at https://go.aiven.io/pyconuk-signup
+Get a free trial of Aiven services at https://go.aiven.io/europython-signup
 
-Also, we're hiring! See https://aiven.io/careers
+.. Also, we're hiring! See https://aiven.io/careers
 
 Written in reStructuredText_, converted to PDF using rst2pdf_
 
@@ -837,9 +885,26 @@ Written in reStructuredText_, converted to PDF using rst2pdf_
 Slides and accompanying material |cc-attr-sharealike| at
 https://github.com/aiven-labs/pgvector-find-faces-talk
 
-.. image:: images/qr_tibs_pg_vector_talk.png
+.. raw:: pdf
+
+   FrameBreak
+
+.. raw:: pdf
+
+   Spacer 0 20
+
+.. image:: images/qr-europython-signup.png
     :align: right
-    :scale: 85%
+    :scale: 80%
+
+.. .. raw:: pdf
+
+   Spacer 0 20
+
+.. If I have both QR codes, my phone won't reliably allow selecting the top one
+.. .. image:: images/qr-pgvector-find-faces-github.png
+    :align: right
+    :scale: 55%
 
 .. And that's the end of the slideshow
 
