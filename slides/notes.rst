@@ -982,7 +982,7 @@ calculations, and see how that affects things.
 The obligatory collage
 ----------------------
 
-So here's a collage of found photos, laid out to mostly hide other people:
+So here's a collage of more of the found photos, laid out to mostly hide other people:
 
 .. image:: images/CrabWeekPhotoCollage.jpg
    :width: 80%
