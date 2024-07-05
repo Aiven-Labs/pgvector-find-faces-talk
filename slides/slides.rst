@@ -14,7 +14,7 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
     Slides and source code at
     https://github.com/aiven-labs/pgvector-find-faces-talk
 
-    .. raw:: pdf
+    .. .. raw:: pdf
 
        Spacer 0 5
 
@@ -136,6 +136,40 @@ and we can do maths between vectors - for instance
 
 * "is the vector between colour 1 and colour 2 *similar to* the vector
   between colour 3 and colour 4"
+
+How do we calculate the vectors?
+--------------------------------
+
+Back in the early days of Natural Language Processing, this was done by hand.
+
+Nowadays we use Machine Learning and especially Large Language Models.
+
+Calculating the vectors by hand: early NLP
+------------------------------------------
+
+In early Natural Language Processing, words would be categorised by hand.
+
+* ``king`` -> ``[1, 1, 0.8, ...]``
+* ``queen`` -> ``[1, 0, 0.7, ...]``
+* ``princess`` -> ``[0.9, 0, 0.3, ...]``
+
+gauging "importance", "gender", "typical age" and then other things
+
+This doesn't scale well - but we do know what the "meanings" are, and we can
+hope to spot bias
+
+Calculating the vectors by hand: ML
+-----------------------------------
+
+With ML, we can
+
+* *train* a machine learning system
+* to *"recognise"* that a thing belongs to particular categories.
+
+And the "thing" can be more than just words
+
+This is wonderful - but sometimes leads to surprising results, because we
+don't know what the meanings *"chosen"* actually are
 
 Calculating the vectors
 -----------------------

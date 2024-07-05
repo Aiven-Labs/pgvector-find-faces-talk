@@ -100,5 +100,5 @@ styles:
         alignment: TA_CENTER
         parent: bodytext
         fontName: fontSans
-        fontSize: 70%
+        fontSize: 80%
         textColor: "#222222"
