@@ -4,13 +4,14 @@ Slides for "How I used PostgreSQL® to find pictures of me at a party"
 
 These are the slides for the talk "How I used PostgreSQL® to find pictures of me
 at a party", given by Tibs_ at
-`PyCon UK 2023`_.
+`PyCon UK 2023`_ and at `EuroPython 2024`_
 
 .. _`PyCon UK 2023`: https://2023.pyconuk.org/
+.. _`EuroPython 2024`: https://ep2024.europython.eu/
 .. _Tibs: https://aiven.io/Tibs
-.. _`on youtube`: https://www.youtube.com/watch?v=_FqKxKVJGWQ
+.. _`version from PyCon UK`: https://www.youtube.com/watch?v=_FqKxKVJGWQ
 
-The video is available `on YouTube`_.
+The video of the `version from PyCon UK`_ is available on YouTube.
 
 The source code
 ~~~~~~~~~~~~~~~
@@ -24,7 +25,8 @@ The slides
 The slides are written using reStructuredText_, and thus intended to be
 readable as plain text.
 
-The sources for the slides are in `<slides.rst>`_.
+The sources for the slides are in `<slides.rst>`_, and this is the version
+used at EuroPython.
 
 The sources for the slides *as given at PyCon UK* are in `<slides-at-pyconuk.rst>`_.
 
@@ -44,6 +46,13 @@ The QR code on the final slide was generated using the command line program
 for qrencode_, which I installed with ``brew install qrencode`` on my Mac.
 
 .. _qrencode: https://fukuchi.org/works/qrencode/
+
+Index slides
+~~~~~~~~~~~~
+
+I created some slides around pgvector and indexing, but they made the talk too
+long. The corresponding text is still in the notes, and the slides are in
+slides are in `<slides-indexing.rst>`_ and `<slides-indexing.pdf>`_.
 
 The notes
 ~~~~~~~~~
