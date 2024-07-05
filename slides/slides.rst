@@ -164,12 +164,6 @@ Find which files contain my face, using SQL like the following:
       ORDER BY embedding <-> [0.38162553310394287, ..., 0.20030969381332397]
       LIMIT 10;
 
-Based on a tutorial
--------------------
-
-* https://aiven.io/developer/find-faces-with-pgvector
-* https://github.com/Aiven-Labs/pgvector-image-recognition
-
 Stage 1. Find faces and store their embeddings
 ----------------------------------------------
 
@@ -707,11 +701,11 @@ Indexing
 
 Speeds up the *use* of embeddings, but gives *approximate* results.
 
-* IVFFlat: Inverted File with Flat Compression
+IVFFlat: Inverted File with Flat Compression
 
   Slower to search, quicker to build, smaller index, needs rebuilding
 
-* HNSW: Hierarchical Navigable Small Worlds
+HNSW: Hierarchical Navigable Small Worlds
 
   Faster to search, slower to build, adapts to new data
 
@@ -799,9 +793,7 @@ For instance, the following (also supported by Aiven :) support vector search:
 
 And there are currently lots of (dedicated) vector databases out there.
 
-..
-
-    Other tools
+.. Other tools
 
     Is pgvector the only PostgreSQL solution?
 
