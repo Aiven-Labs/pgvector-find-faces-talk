@@ -812,31 +812,15 @@ Things will get better and faster and support larger vectors over the next few y
 
 .. _TOAST: https://www.postgresql.org/docs/current/storage-toast.html
 
-Acknowledgements
-----------------
 
-Postgres, PostgreSQL and the Slonik Logo are trademarks or registered
-trademarks of the PostgreSQL Community Association of Canada, and used with
-their permission
+.. -----------------------------------------------------------------------------
 
-* `ML Typewriter`_ image from https://unsplash.com/, by `Markus Winkler`_
-
-* Penknife_ and Hammer_ images from https://pixabay.com/, by `OpenClipart-Vectors`_
-
-* Vector graph from `JCC Math.Phys 191: The vector class`_, `CC BY-SA 3.0`_
-
-* My colleagues `Francesco Tisiot`_ for the `original tutorial`_, and `Olena Kutsenko`_ for the index diagrams
-
-.. _Penknife: https://pixabay.com/vectors/swiss-army-knife-pocket-knife-blade-154314/
-.. _Hammer: https://pixabay.com/vectors/hammer-tool-craftsman-nail-159639/
 .. _`OpenClipart-Vectors`: https://pixabay.com/users/openclipart-vectors-30363/
 
 .. _`JCC Math.Phys 191: The vector class`: http://jccc-mpg.wikidot.com/the-vector-class
 .. _`CC BY-SA 3.0`: https://creativecommons.org/licenses/by-sa/3.0/
-.. _`original tutorial`: https://aiven.io/developer/find-faces-with-pgvector
 
 .. _`Francesco Tisiot`: https://aiven.io/francesco
-.. _`Olena Kutsenko`: https://aiven.io/olena
 
 .. -----------------------------------------------------------------------------
 
@@ -847,11 +831,13 @@ their permission
 Fin
 ---
 
+Postgres, PostgreSQL and the Slonik Logo are trademarks or registered
+trademarks of the PostgreSQL Community Association of Canada, and used with
+their permission
+
 Get a free trial of Aiven services at https://go.aiven.io/europython-signup
 
 .. Also, we're hiring! See https://aiven.io/careers
-
-Written in reStructuredText_, converted to PDF using rst2pdf_
 
 ..
     |cc-attr-sharealike| This slideshow is released under a
@@ -866,7 +852,7 @@ https://github.com/aiven-labs/pgvector-find-faces-talk
 
 .. raw:: pdf
 
-   Spacer 0 20
+   Spacer 0 85
 
 .. image:: images/qr-europython-signup.png
     :align: right

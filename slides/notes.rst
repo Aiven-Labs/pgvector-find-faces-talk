@@ -1508,6 +1508,32 @@ This set of interesting references is not in any way complete, so do your own re
 .. _Glyph: https://blog.glyph.im/pages/about.html
 .. _`A Grand Unified Theory of the AI Hype Cycle`: https://blog.glyph.im/2024/05/grand-unified-ai-hype.html
 
+Acknowledgements
+----------------
+
+Postgres, PostgreSQL and the Slonik Logo are trademarks or registered
+trademarks of the PostgreSQL Community Association of Canada, and used with
+their permission
+
+* `ML Typewriter`_ image from https://unsplash.com/, by `Markus Winkler`_
+
+* Penknife_ and Hammer_ images from https://pixabay.com/, by `OpenClipart-Vectors`_
+
+* Vector graph from `JCC Math.Phys 191: The vector class`_, `CC BY-SA 3.0`_
+
+* My colleagues `Francesco Tisiot`_ for the `original tutorial`_, and `Olena Kutsenko`_ for the index diagrams
+
+.. _Penknife: https://pixabay.com/vectors/swiss-army-knife-pocket-knife-blade-154314/
+.. _Hammer: https://pixabay.com/vectors/hammer-tool-craftsman-nail-159639/
+.. _`OpenClipart-Vectors`: https://pixabay.com/users/openclipart-vectors-30363/
+
+.. _`JCC Math.Phys 191: The vector class`: http://jccc-mpg.wikidot.com/the-vector-class
+.. _`CC BY-SA 3.0`: https://creativecommons.org/licenses/by-sa/3.0/
+.. _`original tutorial`: https://aiven.io/developer/find-faces-with-pgvector
+
+.. _`Francesco Tisiot`: https://aiven.io/francesco
+.. _`Olena Kutsenko`: https://aiven.io/olena
+
 Fin
 ---
 
