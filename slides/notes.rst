@@ -613,18 +613,15 @@ Running it
 ::
 
   $ ./find_faces_store_embeddings.py ~/data/crab-week-2023-wednesday/*
-  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
-  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available ...
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available ...
   Loading imgbeddings
-  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:671: FutureWarning: 'cached_download' is the legacy way to download files from the HF hub, please consider upgrading to 'hf_hub_download'
-    warnings.warn(
-  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/transformers/models/clip/processing_clip.py:149: FutureWarning: `feature_extractor` is deprecated and will be removed in v5. Use `image_processor` instead.
-    warnings.warn(
+  ... some warnings ...
   Processing /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2597.jpg
   Found 5 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2597.jpg
   Processing /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2598.jpg
   Found 5 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2598.jpg
-  ...
+  ... lots more logs ...
   Found 8 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN3654.jpg
   Processing /Users/tony.ibbs/data/crab-week-2023-wednesday/Copy of AIVEN2685.jpg
   Found 3 "faces" in /Users/tony.ibbs/data/crab-week-2023-wednesday/Copy of AIVEN2685.jpg
@@ -784,13 +781,10 @@ Running it
 ::
 
   $ ./find_nearby_faces.py slack-picture.jpg -n 10
-  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
-  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available ...
+  None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available ...
   Loading imgbeddings
-  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:671: FutureWarning: 'cached_download' is the legacy way to download files from the HF hub, please consider upgrading to 'hf_hub_download'
-    warnings.warn(
-  /Users/tony.ibbs/sw/aiven/Aiven-Labs/pgvector-find-faces-talk/src/venv/lib/python3.11/site-packages/transformers/models/clip/processing_clip.py:149: FutureWarning: `feature_extractor` is deprecated and will be removed in v5. Use `image_processor` instead.
-    warnings.warn(
+  ... some warnings ...
   Number of results: 10
     0: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2752.jpg
     1: /Users/tony.ibbs/data/crab-week-2023-wednesday/AIVEN2839.jpg
