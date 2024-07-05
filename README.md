@@ -6,21 +6,18 @@ at a party", given by [Tibs](https://aiven.io/tibs):
 1. At [PyCon UK 2023](https://2023.pyconuk.org/). The video is available [on
    YouTube](https://www.youtube.com/watch?v=_FqKxKVJGWQ).
 
-   The branch
-   [pyconuk2024](https://github.com/Aiven-Labs/pgvector-find-faces-talk/tree/pyconuk2024)
-   represents the state of this repository for that version of the talk.
-
 2. At [EuroPython 2024](https://ep2024.europython.eu/). The video will be
    linked when it is available.
-
-   The branch
-   [europython2024](https://github.com/Aiven-Labs/pgvector-find-faces-talk/tree/europython2024)
-   represents the state of this repository for that version of the talk.
 
 A talk about using Python, OpenCV, OpenAI CLIP, PostgreSQL and pgvector to
 find pictures containing a given face, and why that might be a good thing to do.
 
-This talk is based upon and inspired by the tutorial [Image recognition with Python, OpenCV, OpenAI CLIP and pgvector](https://aiven.io/developer/find-faces-with-pgvector)
+This talk is based upon and inspired by the tutorial [Image recognition with Python, OpenCV, OpenAI CLIP and pgvector](https://aiven.io/developer/find-faces-with-pgvector).
+There's also `a GitHub repository`_ with `a Jupyter notebook`_ showing working
+code for that tutorial.
+
+.. _`A GitHub repository`: https://github.com/Aiven-Labs/pgvector-image-recognition
+.. _`a Jupyter notebook`: https://github.com/Aiven-Labs/pgvector-image-recognition/blob/main/main.ipynb
 
 > **Note** an early version of this talk was rehearsed at [CamPUG](https://www.meetup.com/campug) on [Tuesday
  5th September 2023](https://www.meetup.com/campug/events/295523764/).
