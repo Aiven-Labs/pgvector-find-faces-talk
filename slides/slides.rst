@@ -36,6 +36,9 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
 .. The image won't fit on this page/slide, so will spill onto the next
    ...which is actually what I want
 
+   Should this go here (to give motivation) or before the "was this a success"
+   slide (as it does in the notes)?
+
 .. image:: images/CrabWeekPhotoCollage.jpg
    :width: 73%
 

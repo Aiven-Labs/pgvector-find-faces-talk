@@ -985,6 +985,14 @@ calculations, and see how that affects things.
    moreover I'll need to rerun the "calculate and store embeddings" step if I
    want to re-investigate older embeddings.
 
+The obligatory collage
+----------------------
+
+So here's a collage of found photos, laid out to mostly hide other people:
+
+.. image:: images/CrabWeekPhotoCollage.jpg
+   :width: 80%
+
 So was this a success, so far?
 ------------------------------
 
