@@ -31,6 +31,14 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
 
       Spacer 0 1
 
+.. -----------------------------------------------------------------------------
+
+.. The image won't fit on this page/slide, so will spill onto the next
+   ...which is actually what I want
+
+.. image:: images/CrabWeekPhotoCollage.jpg
+   :width: 73%
+
 Broad structure
 ---------------
 
