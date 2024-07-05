@@ -646,7 +646,7 @@ Find "nearby" faces
     Options:
     -n, --number-matches INTEGER
     -p, --pg-uri TEXT             the URI for the PostgreSQL service, defaulting
-                                    to $PG_SERVICE_URI if that is set
+                                  to $PG_SERVICE_URI if that is set
     --help                        Show this message and exit.
 
 Reminder: we're doing this sequence
@@ -783,7 +783,7 @@ Running it
 
 ::
 
-  ; ./find_nearby_faces.py slack-picture.jpg -n 10
+  $ ./find_nearby_faces.py slack-picture.jpg -n 10
   None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
   None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
   Loading imgbeddings
@@ -824,7 +824,7 @@ Wednesday at Crab Week
 
 Which I think is perfectly acceptable for demo software.
 
-Going through the files manually, I found 25 that had my face visible,
+Going through the files manually, I found 25 that had me in them,
 but some were in a crowd or obscured, three were of my back (!) and two were
 with a false moustache
 
@@ -1012,50 +1012,28 @@ What I'd do next
 
 Improve ``find_faces_store_embeddings.py``:
 
-* Add a switch to allow setting the "face detecting" parameters
+* Add a switch to allow playing with the "face detecting" parameters
 
   This would save me haing to edit the code when I want to explore different
   values.
 
-* Make a different table for each set of parameters
+* Make a different table for each set of those parameters
 
   This would save me havng to ``DELETE FROM pictures`` each time I changed the
   settings, and also save me from having to re-run the "calculate and store
   embeddings" step if I wanted to re-investigate older embeddings.
 
-* Add a switch for "generate reference face"
+* Add a switch to store my "reference face"
 
-  Storing the reference face embedding seems sensible. One table for all the
-  references might work, and then access them by the filename + settings key.
-
-Some other thoughts:
-
-* Name the output table using the parameter values
-* Automatically create it if it doesn't exist
-* Probably also allow giving a "base name" if the user wants - this might
-  make storing the reference face easier
-* The "generate reference face" switch would assume a base name (e.g.
-  reference) and would also (by default?) check that there's only one face
+  Storing the reference face embedding seems sensible.
 
 Improve ``find_nearby_faces.py``
 
-* Add a switch to specify which face (from the db) to look for
+* Add a switch to choose the "referene face" from the database
 * Add a switch to specify which table to search
 
-Some other thoughts:
-
-* As implied, don't recalculate the reference face each time
-  - so need to work out a way of specifying the face that is wanted,
-  from the database
-* Since tables now have the settings in their names, probably allow
-
-  1. Specify the table name explicitly
-  2. Give the same "settings" switches as from find_faces_store_embeddings,
-     and recalculate the table name - this may be easier to use!
-
-I'd also expect to share common code, and might look at using classes
-to save passing around so many variables
-
+Also, look for general code improvements, including sharing code, and
+especially upload the records to the database in a more efficient way!
 
 Part the fourth: Why PostgreSQL?
 --------------------------------

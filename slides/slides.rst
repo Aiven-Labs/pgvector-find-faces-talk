@@ -8,7 +8,7 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
 
     .. raw:: pdf
 
-       Spacer 0 30
+       Spacer 0 10
 
 
     Slides and source code at
@@ -16,7 +16,10 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
 
     .. raw:: pdf
 
-       Spacer 0 30
+       Spacer 0 5
+
+    .. image:: images/qr-pgvector-find-faces-github.png
+       :scale: 50%
 
 .. footer::
 
@@ -136,6 +139,10 @@ but with ML, we can
 * to *"recognise"* that a thing belongs to particular categories.
 
 This is wonderful - and sometimes leads to surprising results
+
+.. Comment from reviewer - I spend a reasonable amount of time on this one
+   slide, so consider splitting it up
+   (which would help me remember what to say!)
 
 Part the third: Finding pictures of me
 --------------------------------------
@@ -394,7 +401,7 @@ Find "nearby" faces
     Options:
     -n, --number-matches INTEGER
     -p, --pg-uri TEXT             the URI for the PostgreSQL service, defaulting
-                                    to $PG_SERVICE_URI if that is set
+                                  to $PG_SERVICE_URI if that is set
     --help                        Show this message and exit.
 
 Find "nearby" faces (1)
@@ -498,23 +505,31 @@ That SQL operator:
 But how good is it?
 -------------------
 
-779 files, 5006 faces
-
-* 11 to 21 minutes to calculate and store the embeddings
-
-* 3 seconds to find the 10 nearest faces
-
-
 Wednesday at Crab Week
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 There were 779 photos, and 5006 faces.
 
-Going through them manually, I found 25 that had my face visible,
+Going through them manually, I found 25 that had me in them.
 
  * some were in a crowd or obscured,
  * three were of my back (!)
  * two were with a false moustache
+
+Running the programs
+--------------------
+
+::
+
+  $ ./find_faces_store_embeddings.py ~/data/crab-week-2023-wednesday/*
+
+11 to 21 minutes to calculate and store the embeddings
+
+::
+
+  $ ./find_nearby_faces.py slack-picture.jpg -n 10
+
+3 seconds to find the 10 nearest faces
 
 Results the program found
 -------------------------
@@ -601,13 +616,13 @@ What I'd do next
 
 Improve ``find_faces_store_embeddings.py``:
 
-* Add a switch to allow setting the "face detecting" parameters
-* Make a different table for each set of parameters
-* Add a switch for "generate reference face"
+* Add switches to allow playing with the "face detecting" parameters
+* Store the results for different parameters in different tables
+* Add a switch to store my "reference face"
 
 Improve ``find_nearby_faces.py``
 
-* Add a switch to specify which face (from the db) to look for
+* Add a switch to choose the "reference face" from the database
 * Add a switch to specify which table to search
 
 Part the fourth: Why PostgreSQL?
@@ -784,18 +799,19 @@ For instance, the following (also supported by Aiven :) support vector search:
 
 And there are currently lots of (dedicated) vector databases out there.
 
-Other tools
------------
+..
 
-Is pgvector the only PostgreSQL solution?
+    Other tools
 
-Neon_ provides pg_embedding_, which uses an HNSW index
+    Is pgvector the only PostgreSQL solution?
 
-There's `an article by them`_ comparing its performance with pgvector HNSW
+    Neon_ provides pg_embedding_, which uses an HNSW index
 
-.. _Neon: https://neon.tech/
-.. _pg_embedding: https://github.com/neondatabase/pg_embedding
-.. _`an article by them`: https://neon.tech/blog/pgvector-meets-hnsw-index
+    There's `an article by them`_ comparing its performance with pgvector HNSW
+
+    .. _Neon: https://neon.tech/
+    .. _pg_embedding: https://github.com/neondatabase/pg_embedding
+    .. _`an article by them`: https://neon.tech/blog/pgvector-meets-hnsw-index
 
 
 The future is bright (judging from history)
