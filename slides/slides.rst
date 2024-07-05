@@ -26,7 +26,7 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
       running into the bottom of the slide
    .. raw:: pdf
 
-      Spacer 0 5
+      Spacer 0 1
 
 Broad structure
 ---------------
@@ -615,7 +615,7 @@ Part the fourth: Why PostgreSQL?
 
 .. raw:: pdf
 
-    Spacer 0 20
+    Spacer 0 10
 
 .. image:: images/PostgreSQL_logo.3colors.120x120.png
            :width: 30%
@@ -642,7 +642,7 @@ So why PostgreSQL?
 
 .. raw:: pdf
 
-   Spacer 0 55
+   Spacer 0 50
 
 |swiss-army-knife| and/or |hammer|
 
@@ -690,40 +690,15 @@ and can do ANALYZE on the query, too
 Indexing
 --------
 
-Speeds up the *use* of embeddings.
+Speeds up the *use* of embeddings, but gives *approximate* results.
 
-* IVFFlat - exact nearest neighbours, slower
-* HNSW - approximate nearest neighbours, faster
+* IVFFlat: Inverted File with Flat Compression
 
-IVFFlat: Inverted File with Flat Compression
---------------------------------------------
+  Slower to search, quicker to build, smaller index, needs rebuilding
 
-.. raw:: pdf
+* HNSW: Hierarchical Navigable Small Worlds
 
-   Spacer 0 10
-
-.. image:: images/IVFFLAT.jpeg
-   :width: 80%
-
-
-HNSW: Hierarchical Navigable Small Worlds
------------------------------------------
-
-.. image:: images/HNSW.jpeg
-   :width: 45%
-
-So which to choose?
-~~~~~~~~~~~~~~~~~~~
-
-Advice from `Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`_
-
-  * If you care more about index size, then choose IVFFlat.
-  * If you care more about index build time, then select IVFFlat.
-  * If you care more about speed, then choose HNSW.
-  * If you expect vectors to be added or modified, then select HNSW.
-
-.. _`Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`: https://github.com/pgvector/pgvector#ivfflat:
-
+  Faster to search, slower to build, adapts to new data
 
 So why PostgreSQL? - A recurring pattern
 ----------------------------------------

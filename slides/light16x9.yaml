@@ -94,3 +94,11 @@ styles:
     item-list-item:
         parent: bodytext
         spaceBefore: 12
+
+    # Try for a less intrusive footer
+    footer:
+        alignment: TA_CENTER
+        parent: bodytext
+        fontName: fontSans
+        fontSize: 70%
+        textColor: "#222222"
