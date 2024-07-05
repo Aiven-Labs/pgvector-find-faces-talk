@@ -1029,7 +1029,7 @@ Improve ``find_faces_store_embeddings.py``:
 
 Improve ``find_nearby_faces.py``
 
-* Add a switch to choose the "referene face" from the database
+* Add a switch to choose the "reference face" from the database
 * Add a switch to specify which table to search
 
 Also, look for general code improvements, including sharing code, and
@@ -1463,7 +1463,7 @@ This set of interesting references is not in any way complete, so do your own re
   Docs Atlantic 2023`_ is an excellent talk about the ethics around AI
   regardless of why you're using it.
 
-* Glyph`_'s `A Grand Unified Theory of the AI Hype Cycle`_ is a fun
+* `Glyph`_'s `A Grand Unified Theory of the AI Hype Cycle`_ is a fun
   look at the shape of the history of this field. By his non-exhaustive list
   of N, this is my fourth time round the cycle :)
 
