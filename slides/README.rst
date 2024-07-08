@@ -167,7 +167,7 @@ It's not in any way complete, so do your own research!
 .. _`Face Detection with Haar Cascade`: https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
 .. _`Sebi's demo`: https://twitter.com/sebi2706/status/1698715900231184755
 .. _`Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`: https://github.com/pgvector/pgvector#ivfflat:
-.. _`Write the Docs Atlantic`: https://www.writethedocs.org/conf/atlantic/2023/
+.. _`Write the Docs Atlantic 2023`: https://www.writethedocs.org/conf/atlantic/2023/
 .. _`AI ethics for tech writers`: https://www.youtube.com/watch?v=SDzP6Xs9WoQ
 .. _`Chris Meyns`: https://www.linkedin.com/in/meyns/
 .. _Glyph: https://blog.glyph.im/pages/about.html
