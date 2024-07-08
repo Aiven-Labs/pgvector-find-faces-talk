@@ -11,7 +11,7 @@ How I used PostgreSQL\ :sup:`®` to find pictures of me at a party
 
 .. footer::
 
-   *tony.ibbs@aiven.io* / *https://aiven.io/tibs*  / *@much_of_a*
+   *tony.ibbs@aiven.io* / *https://aiven.io/tibs*  / *@much_of_a* / *page ###Page### of ###Total###*
 
 
 Broad structure
