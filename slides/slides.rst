@@ -171,24 +171,6 @@ And the "thing" can be more than just words
 This is wonderful - but sometimes leads to surprising results, because we
 don't know what the meanings *"chosen"* actually are
 
-Calculating the vectors
------------------------
-
-By hand for relatively simple cases
-
-    (for instance, in early text analysis)
-
-but with ML, we can
-
-* *train* a machine learning system
-* to *"recognise"* that a thing belongs to particular categories.
-
-This is wonderful - and sometimes leads to surprising results
-
-.. Comment from reviewer - I spend a reasonable amount of time on this one
-   slide, so consider splitting it up
-   (which would help me remember what to say!)
-
 Part the third: Finding pictures of me
 --------------------------------------
 
