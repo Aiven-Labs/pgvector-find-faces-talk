@@ -28,6 +28,3 @@ There are two directories here:
 * [src](./src) contains the Python programs I used when following the
   tutorial.
 
-See also the Aiven Labs repository
-[pgvector-image-recognition](https://github.com/Aiven-Labs/pgvector-image-recognition)
-for other materials relating to the tutorial.
