@@ -51,7 +51,7 @@ Index slides
 ~~~~~~~~~~~~
 
 I created some slides around pgvector and indexing, but they made the talk too
-long. The corresponding text is still in the notes, and the slides are in
+long. The corresponding text is still in the notes, and the
 slides are in `<slides-on-indexing.rst>`_ and `<slides-on-indexing.pdf>`_.
 
 The notes
