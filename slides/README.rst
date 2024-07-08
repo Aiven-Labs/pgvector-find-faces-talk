@@ -140,9 +140,18 @@ It's not in any way complete, so do your own research!
 * `Sebi's demo`_ - my colleague Sébastien Blanc tweeting a video showing his
   cool demo of using ``pgvector`` to find nearest colours by RGB.
 
-And the "`AI and ethics`_" talk from `Write the Docs Atlantic`_ when it's
-available - this talk by `Chris Meyns`_ was called "AI ethics for tech writers", but really it
-is an excellent talk about the ethics around AI regardless of why you're using it.
+* I think `Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`_ is a
+  decent introduction to the two types of index in pgvector, and how to decide
+  which you want.
+
+* The talk `AI ethics for tech writers`_ by `Chris Meyns`_ from `Write the
+  Docs Atlantic 2023`_ is an excellent talk about the ethics around AI
+  regardless of why you're using it.
+
+* `Glyph`_'s `A Grand Unified Theory of the AI Hype Cycle`_ is a fun
+  look at the shape of the history of this field. By his non-exhaustive list
+  of N, this is my fourth time round the cycle :)
+
 
 .. _`What are embeddings`: https://vickiboykis.com/what_are_embeddings/
 .. _`Vicki Boykis`: https://vickiboykis.com/about/
@@ -157,9 +166,12 @@ is an excellent talk about the ethics around AI regardless of why you're using i
 .. _`Vector Embeddings Explained`: https://weaviate.io/blog/vector-embeddings-explained
 .. _`Face Detection with Haar Cascade`: https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
 .. _`Sebi's demo`: https://twitter.com/sebi2706/status/1698715900231184755
+.. _`Vector Indexes in Postgres using pgvector: IVFFlat vs HNSW`: https://github.com/pgvector/pgvector#ivfflat:
 .. _`Write the Docs Atlantic`: https://www.writethedocs.org/conf/atlantic/2023/
-.. _`AI and ethics`: https://www.writethedocs.org/conf/atlantic/2023/speakers/#speaker-chris-meyns-ai-ethics-for-tech-writers-chris-meyns
+.. _`AI ethics for tech writers`: https://www.youtube.com/watch?v=SDzP6Xs9WoQ
 .. _`Chris Meyns`: https://www.linkedin.com/in/meyns/
+.. _Glyph: https://blog.glyph.im/pages/about.html
+.. _`A Grand Unified Theory of the AI Hype Cycle`: https://blog.glyph.im/2024/05/grand-unified-ai-hype.html
 
 
 Acknowledgements
@@ -188,9 +200,10 @@ Images:
 .. _`JCC Math.Phys 191: The vector class`: http://jccc-mpg.wikidot.com/the-vector-class
 .. _`CC BY-SA 3.0`: https://creativecommons.org/licenses/by-sa/3.0/
 
-My colleague Francesco Tisiot for the `original tutorial`_, and much good advice
+My colleagues `Francesco Tisiot`_ for the `original tutorial`_, and `Olena Kutsenko`_ for the index diagrams
 
 .. _`original tutorial`: https://aiven.io/developer/find-faces-with-pgvector
+.. _`Olena Kutsenko`: https://aiven.io/olena
 
 License
 ~~~~~~~
