@@ -357,7 +357,9 @@ The program requirements
 
 We're going to be using
 
-* `opencv-python`_ to find faces
+* click_ to handle the command line
+* `psycopg2-binary`_ to talk to PostgreSQL
+* `opencv-python`_ to run OpenCV_, the open-source computer vision library.
 * imgbeddings_ to calculate embeddings from an image
 
 We also need to download the ::
@@ -373,10 +375,8 @@ Cascade model that we will use to recognise faces.
 
 .. _`Face Detection with Haar Cascade`: https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
 
-
-My example programs also use click_ and `psycopg2-binary`_
-
 .. _`opencv-python`: https://pypi.org/project/opencv-python/
+.. _opencv: https://opencv.org/
 .. _imgbeddings: https://github.com/minimaxir/imgbeddings
 .. _click: https://click.palletsprojects.com/
 .. _`psycopg2-binary`: https://pypi.org/project/psycopg2-binary/

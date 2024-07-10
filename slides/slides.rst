@@ -237,17 +237,18 @@ Using my slack image as the reference face
 The program requirements
 ------------------------
 
-We're going to be using
-
-* `opencv-python`_ to find faces
+* click_ to handle the command line
+* `psycopg2-binary`_ to talk to PostgreSQL
+* `opencv-python`_ to run OpenCV_, the open source computer vision library
 * imgbeddings_ to calculate embeddings from an image
-* the ``haarcascade_frontalface_default.xml``
-  file from the `OpenCV GitHub repository`_, which defines the
-  pre-trained Haar Cascade model, which we will use to find the faces
+* We need to download a pre-trained 
+  model to recognise faces, 
+  which we get from the `OpenCV GitHub repository`_ ::
 
-My example programs also use click_ and `psycopg2-binary`_
+    haarcascade_frontalface_default.xml
 
 .. _`opencv-python`: https://pypi.org/project/opencv-python/
+.. _opencv: https://opencv.org/
 .. _imgbeddings: https://github.com/minimaxir/imgbeddings
 .. _click: https://click.palletsprojects.com/
 .. _`psycopg2-binary`: https://pypi.org/project/psycopg2-binary/
