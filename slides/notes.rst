@@ -373,6 +373,25 @@ Cascade model that we will use to recognise faces.
  their scale and location in those images. The article `Face Detection with
  Haar Cascade`_ describes how a Haar Cascade model recognises faces.
 
+The imgbeddings_ README says:
+
+  A Python package to generate embedding vectors from images, using OpenAI_'s
+  robust `CLIP model`_ via `Hugging Face`_ transformers_. These image
+  embeddings [are] derived from an image model that has seen the entire
+  internet up to mid-2020
+
+It also notes that:
+
+  The `official paper for CLIP`_ explicitly notes that there are inherent
+  biases in the finished model, and that CLIP shouldn't be used in production
+  applications as a result. 
+
+.. _OpenAI: https://openai.com/
+.. _`CLIP model`: https://github.com/openai/CLIP
+.. _`Hugging Face`: https://huggingface.co/
+.. _transformers: https://huggingface.co/docs/transformers/index
+.. _`official paper for CLIP`: https://openai.com/blog/clip/
+
 .. _`Face Detection with Haar Cascade`: https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
 
 .. _`opencv-python`: https://pypi.org/project/opencv-python/
@@ -1336,12 +1355,12 @@ Although this can change as new capabilities are added.
 
 ...for instance, the addition of ``<+>`` (L1 distance) in 0.7.0
 
-When the queries aren't SQL
----------------------------
+When you don't want a traditional RDB
+-------------------------------------
 
-Relational databases and SQL aren't always the best solution.
+Traditional relational databases and SQL aren't always the best solution.
 
-For instance, the following (all also supported by Aiven) also support vector search:
+For instance, the following (also available via Aiven) all support vector search:
 
 * OpenSearch - document store with powerful indexing and search
 * ClickHouse - columnnar database (actually does support SQL)

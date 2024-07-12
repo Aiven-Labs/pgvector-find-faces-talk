@@ -808,12 +808,12 @@ Although this can change...
 
 ...for instance, the addition of ``<+>`` (L1 distance) in 0.7.0
 
-When the queries aren't SQL
----------------------------
+When you don't want a traditional RDB
+-------------------------------------
 
-Relational databases and SQL aren't always the best solution.
+Traditional relational databases and SQL aren't always the best solution.
 
-For instance, the following (also supported by Aiven :) support vector search:
+For instance, the following (also available via Aiven :) support vector search:
 
 * OpenSearch - document store with powerful indexing and search
 * ClickHouse - columnnar database (actually does support SQL)
