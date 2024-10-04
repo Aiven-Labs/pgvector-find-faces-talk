@@ -3,7 +3,7 @@
 Source and slides for the talk "How I used PostgreSQL® to find pictures of me
 at a party", given by [Tibs](https://aiven.io/tibs):
 
-* At [EuroPython 2024](https://ep2024.europython.eu/). The video will [on
+* At [EuroPython 2024](https://ep2024.europython.eu/). The video is available [on
   YouTube](https://www.youtube.com/watch?v=qXiprdhk87g).
 
 * At [PyCon UK 2023](https://2023.pyconuk.org/). The video is available [on
