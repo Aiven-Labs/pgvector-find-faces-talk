@@ -3,11 +3,11 @@
 Source and slides for the talk "How I used PostgreSQL® to find pictures of me
 at a party", given by [Tibs](https://aiven.io/tibs):
 
-1. At [PyCon UK 2023](https://2023.pyconuk.org/). The video is available [on
-   YouTube](https://www.youtube.com/watch?v=_FqKxKVJGWQ).
+* At [EuroPython 2024](https://ep2024.europython.eu/). The video will [on
+  YouTube](https://www.youtube.com/watch?v=qXiprdhk87g).
 
-2. At [EuroPython 2024](https://ep2024.europython.eu/). The video will be
-   linked when it is available.
+* At [PyCon UK 2023](https://2023.pyconuk.org/). The video is available [on
+  YouTube](https://www.youtube.com/watch?v=_FqKxKVJGWQ).
 
 A talk about using Python, OpenCV, OpenAI CLIP, PostgreSQL and pgvector to
 find pictures containing a given face, and why that might be a good thing to do.

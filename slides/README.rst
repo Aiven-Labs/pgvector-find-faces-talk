@@ -9,9 +9,13 @@ at a party", given by Tibs_ at
 .. _`PyCon UK 2023`: https://2023.pyconuk.org/
 .. _`EuroPython 2024`: https://ep2024.europython.eu/
 .. _Tibs: https://aiven.io/Tibs
-.. _`version from PyCon UK`: https://www.youtube.com/watch?v=_FqKxKVJGWQ
+.. _`The version from PyCon UK 2023`: https://www.youtube.com/watch?v=_FqKxKVJGWQ
+.. _`The version from EuroPython 2024`: https://www.youtube.com/watch?v=qXiprdhk87g
 
-The video of the `version from PyCon UK`_ is available on YouTube.
+The videos of the talks are available on YouTube:
+
+* `The version from EuroPython 2024`_
+* `The version from PyCon UK 2023`_
 
 The source code
 ~~~~~~~~~~~~~~~
